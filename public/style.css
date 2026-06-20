@@ -42,6 +42,18 @@ svg {
   --r:        8px;
 }
 
+[data-theme="dark"] {
+  --ground:      #0F172A;
+  --surface:     #1E293B;
+  --text:        #E2E8F0;
+  --muted:       #94A3B8;
+  --accent:      #22D3EE;
+  --accent-soft: #0C4A6E;
+  --dark:        #020617;
+  --dark-mid:    #0F172A;
+  --border:      #334155;
+}
+
 /* ═══════════════════════════════════════════════
    Base
 ═══════════════════════════════════════════════ */
@@ -112,6 +124,45 @@ a:focus-visible {
 .nav-links a.active {
   color: var(--accent);
 }
+
+.theme-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* Show sun in dark mode, moon in light mode */
+.theme-toggle .icon-sun  { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 /* ═══════════════════════════════════════════════
    Section shared
