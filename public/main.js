@@ -121,7 +121,28 @@ function initNavHighlight() {
   sections.forEach(s => observer.observe(s));
 }
 
+/* ─── Dark-mode toggle (session-scoped via sessionStorage) ─── */
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  const saved = sessionStorage.getItem('theme');
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      document.documentElement.removeAttribute('data-theme');
+      sessionStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      sessionStorage.setItem('theme', 'dark');
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   loadRepos();
   initNavHighlight();
+  initThemeToggle();
 });
